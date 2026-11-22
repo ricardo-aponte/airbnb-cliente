@@ -1,0 +1,7 @@
+{
+  "name": "airbnb-cliente",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
