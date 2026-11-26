@@ -1,5 +1,5 @@
-import { Lugar } from './lugar.model';
-import { Usuario } from './usuario.model';
+import type { Lugar } from './lugar.model';
+import type { Usuario } from './usuario.model';
 
 export interface CrearReservaRequest {
   lugar_id: number;

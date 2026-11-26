@@ -1,5 +1,5 @@
-import { Foto } from './foto.model';
-import { Usuario } from './usuario.model';
+import type { Foto } from './foto.model';
+import type { Usuario } from './usuario.model';
 
 export interface Lugar {
   id: number;

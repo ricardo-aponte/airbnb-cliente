@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
   RouteReuseStrategy,
@@ -5,14 +6,13 @@ import {
   withPreloading,
   PreloadAllModules,
 } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
 import {
   IonicRouteStrategy,
   provideIonicAngular,
 } from '@ionic/angular';
 
-import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [

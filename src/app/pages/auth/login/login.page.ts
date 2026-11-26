@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import {
@@ -15,6 +15,7 @@ import {
 } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { homeOutline } from 'ionicons/icons';
+
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -137,6 +138,7 @@ export class LoginPage {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   isLoading = false;
   errorMessage = '';
@@ -150,20 +152,29 @@ export class LoginPage {
     addIcons({ homeOutline });
   }
 
+  ionViewWillEnter(): void {
+    this.isLoading = false;
+    this.errorMessage = '';
+    this.cdr.detectChanges();
+  }
+
   onSubmit(): void {
     if (this.loginForm.invalid) return;
 
     this.isLoading = true;
     this.errorMessage = '';
+    this.cdr.detectChanges();
 
     this.authService.login(this.loginForm.getRawValue()).subscribe({
       next: () => {
         this.isLoading = false;
+        this.cdr.detectChanges();
         this.router.navigateByUrl('/home', { replaceUrl: true });
       },
       error: (err: Error) => {
         this.isLoading = false;
         this.errorMessage = err.message;
+        this.cdr.detectChanges();
       },
     });
   }
